@@ -1,0 +1,33 @@
+services:
+  tf2sv:
+    environment:
+      SERVER_GAME: "tf2"
+      # To set the game the server runs, change this variable.
+      # Valid game options are...
+      # - "tf2" for Team Fortress 2
+      # - "tf2c" for Team Fortress 2 Classified
+      # - "of" for Open Fortress
+
+    # The arguments passed here are passed directly to the dedicated server binary.
+    # For example, this starts the server on ctf_2fort with 24 players max.
+    command: [ "+map", "ctf_2fort", "+maxplayers", "24" ]
+
+
+
+    # You probably don't need to change anything beyond this point.
+
+    image: notquiteapex/tf2sv:latest
+    stdin_open: true
+    tty: true
+    entrypoint: ["/root/.steam/svscripts/run.sh"]
+    ports:
+      - "27005:27005/tcp"
+      - "27005:27005/udp"
+      - "27015:27015/tcp"
+      - "27015:27015/udp"
+    volumes:
+      - type: bind
+        source: ./server
+        target: /root/.steam/sv
+        bind:
+          propagation: rshared
