@@ -5,8 +5,8 @@ services:
       # To set the game the server runs, change this variable.
       # Valid game options are...
       # - "tf2" for Team Fortress 2
-      # - "tf2c" for Team Fortress 2 Classified
-      # - "of" for Open Fortress
+      # - "tf2c" for Team Fortress 2 Classified (TODO)
+      # - "of" for Open Fortress (TODO)
 
     # The arguments passed here are passed directly to the dedicated server binary.
     # For example, this starts the server on ctf_2fort with 24 players max.

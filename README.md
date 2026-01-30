@@ -1,4 +1,4 @@
-# Team Fortress 2 (and Source Mods) with Docker (64-bit)
+# Team Fortress 2 (and Mods) w/ Docker
 A Docker setup to streamline and easily deploy new Team Fortress 2 servers, and servers for Source Mods like TF2 Classified and Open Fortress. These servers run the 64-bit version of srcds.
 
 # Getting Started
