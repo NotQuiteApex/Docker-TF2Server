@@ -6,9 +6,9 @@ You will need a basic understanding of Git, Docker, and networking.
 
 1. Clone this repository to your machine.
 2. Open the `docker-compose.yml` file and make changes to configure which game server to run.
-3. When ready, run `docker compose run tf2sv` inside the root of the repository.
+3. When ready, run `docker compose up` inside the root of the repository.
 4. The container will download and update all of the necessary game files automatically. It may need a few tries to start the download proper.
-5. Once finished, the server will start automatically. The server automatically runs in console mode to allow you to enter commands.
+5. Once finished, the server will start automatically.
 6. Make sure your ports are all forwarded correctly, and you should be able to join your new server.
 
 Any and all addons, maps, and configuration files can be found inside the `server` folder. See the included [README.md](server/README.md) for more details.
