@@ -28,6 +28,7 @@ while : ; do
 
     p "Updating sever files..."
     # Update TF2 (always)
+    p "Updating Team Fortress 2..."
     until steamcmd +runscript /root/.steam/svscripts/tf2-update.txt; do
         p "Failed to update Team Fortress 2."
         p "Trying again in five seconds."
@@ -38,6 +39,7 @@ while : ; do
 
     # Update Source Mod (if applicable)
     if [[ "$SERVER_GAME" == "tf2c" ]]; then
+        p "Updating Team Fortress 2 Classified..."
         until steamcmd +runscript /root/.steam/svscripts/tf2c-update.txt; do
             p "Failed to update Team Fortress 2 Classified."
             p "Trying again in five seconds."
@@ -49,6 +51,7 @@ while : ; do
         ln -s libvstdlib_srv.so libvstdlib.so
         cd ../../.. || exit 3
     elif [[ "$SERVER_GAME" == "of" ]]; then
+        p "Updating Open Fortress..."
         until steamcmd +runscript /root/.steam/svscripts/of-update.txt; do
             p "Failed to update Open Fortress."
             p "Trying again in five seconds."
@@ -63,8 +66,8 @@ while : ; do
         p "\`./tf2/srcds_run_64 -console -game tf $*\`"
              ./tf2/srcds_run_64 -console -game tf "$@"
     elif [[ "$SERVER_GAME" == "tf2c" ]]; then
-        p "\`./tf2c/srcds_run_64 -console -tf_path /root/.steam/sv/tf2 -game tf2classified $*\`"
-             ./tf2c/srcds_run_64 -console -tf_path /root/.steam/sv/tf2 -game tf2classified "$@"
+        p "\`./tf2c/srcds.sh -console -tf_path /root/.steam/sv/tf2 -game tf2classified $*\`"
+             ./tf2c/srcds.sh -console -tf_path /root/.steam/sv/tf2 -game tf2classified "$@"
     elif [[ "$SERVER_GAME" == "of" ]]; then
         p "\`./of/srcds_run_64 -console -tf_path /root/.steam/sv/tf2 -game open_fortress $*\`"
              ./of/srcds_run_64 -console -tf_path /root/.steam/sv/tf2 -game open_fortress "$@"
