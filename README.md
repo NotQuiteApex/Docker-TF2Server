@@ -11,7 +11,7 @@ You will need a basic understanding of Git, Docker, and networking.
 5. Once finished, the server will start automatically.
 6. Make sure your ports are all forwarded correctly, and you should be able to join your new server.
 
-Any and all addons, maps, and configuration files can be found inside the `server` folder. See the included [README.md](server/README.md) for more details.
+Any and all addons, maps, and configuration files can be found inside the `server` folder. You'll need root permissions to edit the files inside, due to limitations of the Docker steamcmd client. See the included [README.md](server/README.md) for more details.
 
 # Advanced Setup
 TODO

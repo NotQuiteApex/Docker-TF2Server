@@ -8,6 +8,14 @@ p () {
     echo "$G$1$C"
 }
 
+update () {
+    until steamcmd +runscript $2; do
+        p "Failed to update $1."
+        p "Trying again in five seconds."
+        sleep 5
+    done
+}
+
 # Then we determine if the provided game is a game this image supports.
 if [[ "$SERVER_GAME" == "tf2" ]]; then
     p "Team Fortress 2 server selected."
@@ -27,36 +35,18 @@ while : ; do
     cd /root/.steam/sv || exit 3
 
     p "Updating sever files..."
-    # Update TF2 (always)
-    p "Updating Team Fortress 2..."
-    until steamcmd +runscript /root/.steam/svscripts/tf2-update.txt; do
-        p "Failed to update Team Fortress 2."
-        p "Trying again in five seconds."
-        sleep 5
-    done
-    mkdir /root/.steam/sv/tf2
-    ln -s "/root/.steam/steam/steamapps/common/Team Fortress 2 Dedicated Server" /root/.steam/sv/tf2
-
-    # Update Source Mod (if applicable)
-    if [[ "$SERVER_GAME" == "tf2c" ]]; then
-        p "Updating Team Fortress 2 Classified..."
-        until steamcmd +runscript /root/.steam/svscripts/tf2c-update.txt; do
-            p "Failed to update Team Fortress 2 Classified."
-            p "Trying again in five seconds."
-            sleep 5
-        done
+    if [[ "$SERVER_GAME" == "tf2" ]]; then
+        update "Team Fortress 2" "/root/.steam/svscripts/tf2-update.txt"
+    elif [[ "$SERVER_GAME" == "tf2c" ]]; then
+        update "Team Fortress 2 Classified" "/root/.steam/svscripts/tf2c-update.txt"
         cd ./tf2c/bin/linux64 || exit 3
         ln -s server.so server_srv.so
         rm libvstdlib.so
         ln -s libvstdlib_srv.so libvstdlib.so
         cd ../../.. || exit 3
     elif [[ "$SERVER_GAME" == "of" ]]; then
-        p "Updating Open Fortress..."
-        until steamcmd +runscript /root/.steam/svscripts/of-update.txt; do
-            p "Failed to update Open Fortress."
-            p "Trying again in five seconds."
-            sleep 5
-        done
+        update "Open Fortress" "/root/.steam/svscripts/of-update.txt"
+        # TODO
     fi
     p "Update finished."
 
